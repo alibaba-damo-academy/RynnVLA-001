@@ -1,0 +1,91 @@
+exp_name: lerobot_exp
+trainer_type: RynnVLAActionPredictionTrainer
+seed: 180271
+
+# training configs
+
+model_parallel_size: 1
+checkpointing: True
+batch_size: 4
+accum_iter: 1
+epochs: 1000
+warmup_epochs: 0.01
+lr: !!float 2e-5
+min_lr: !!float 2e-5
+wd: 0.1
+clip_grad: 4
+num_workers: 8
+pin_mem: True
+save_iteration_interval: 1000
+auto_resume: True
+data_parallel: fsdp
+precision: bf16
+grad_precision: fp32
+checkpointing: True
+model_size: 7B
+max_seq_len: 16384
+mask_image_logits: False
+dropout: 0.05
+z_loss_weight: !!float 1e-5
+condition_frame_num: 1
+ckpt_max_keep: -1
+use_wrist_frame: True
+
+init_from: ./pretrained_models/RynnVLA-001-pretrained-video
+resume_path: ~
+load_pretrain: True
+
+gripper_as_condition: False
+language_instruction_per_frame: True
+repeat_lang_tokens: 1
+language_first: True
+predict_actions_forward: False
+action_head_type: 'one_layer'
+replace_inputs_with_action: False
+is_rel_act: True
+action_chunk_size: 20
+action_dim: 6
+# length_clustering: True
+# z_loss_weight: 1e-5
+# dropout: 0.05
+
+train_dataset:
+  type: 'LeRobotVideoDataset'
+  data_path: path-to-statistics-path-files.json
+  batch_size: 4
+  num_workers: 8
+  pin_memory: True
+  img_size: 384
+  image_mean: [0.5, 0.5, 0.5]
+  image_std: [0.5, 0.5, 0.5]
+  aug_cfg: ~
+  is_train: True
+  frame_interval: 3
+  num_frames: 4
+  normalize: True
+  chunk_size: 20
+  num_chunks_forward: 0
+  min_max_norm: False
+  mean_std_norm: True
+  use_rel_action: True
+
+
+actionvae_config:
+  num_queries: 20
+  state_dim: 6
+
+  hidden_dim: 512
+  dim_feedforward: 3200
+  backbone: 'resnet18'
+  enc_layers: 4
+  dec_layers: 7
+  nheads: 8
+  position_embedding: 'sine'
+  masks: False
+  dilation: False
+  dropout: 0.1
+  pre_norm: False
+  camera_names: ['top']
+
+actionvae_pretrained_path: path-to-trained-vae.pth
+

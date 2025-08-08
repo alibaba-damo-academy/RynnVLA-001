@@ -1,0 +1,58 @@
+exp_name: action_vae_lerobot
+trainer_type: ActionVAETrainer
+seed: 180271
+
+trainer_config:
+  mixed_precision: 'bf16'
+  grad_accum_steps: 1
+  log_with: 'tensorboard'
+  lr: !!float 1.0e-05
+  lr_backbone: !!float 1.0e-05
+  lr_min: !!float 1e-6
+  warmup_lr_init: !!float 1e-6
+  weight_decay: !!float 1.0e-04
+  num_epoch: 10000
+  warmup_steps: 100
+  decay_steps: ~
+  save_every: 1000
+  sample_every: 1000
+  max_grad_norm: ~
+  gradient_checkpointing: True
+
+kl_weight: 0.0001
+
+
+train_dataset:
+  type: 'LeRobotVAEData'
+  data_path: path-to-statistics-path-files.json
+  batch_size: 16
+  num_workers: 8
+  chunk_size: 20
+  pin_memory: True
+  val: False
+
+val_dataset:
+  type: 'LeRobotVAEData'
+  data_path: path-to-statistics-path-files.json
+  batch_size: 16
+  num_workers: 8
+  chunk_size: 20
+  pin_memory: True
+  val: True
+
+actionvae_config:
+  num_queries: 20
+  state_dim: 6
+
+  hidden_dim: 512
+  dim_feedforward: 3200
+  backbone: 'resnet18'
+  enc_layers: 4
+  dec_layers: 7
+  nheads: 8
+  position_embedding: 'sine'
+  masks: False
+  dilation: False
+  dropout: 0.1
+  pre_norm: False
+  camera_names: ['top']

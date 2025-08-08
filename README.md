@@ -1,0 +1,108 @@
+<p align="center">
+    <img src="./assets/logo.png" width="150" style="margin-bottom: 0.2;"/>
+<p>
+
+<h3 align="center"><a href="" style="color:#9C276A">
+RynnVLA-001: A Vision-Language-Action Model Boosted by Generative Priors</a></h3>
+<h5 align="center"> If our project helps you, please give us a star ⭐ on GitHub to support us. 🙏🙏 </h2>
+
+
+<p align="center">
+        🤗 <a href="https://huggingface.co/Alibaba-DAMO-Academy/RynnVLA-001-pretrained-video">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp🤖 <a href="https://modelscope.cn/models/DAMO_Academy/RynnVLA-001-pretrained-video">ModelScope</a>&nbsp&nbsp ｜ &nbsp&nbsp🖥️ <a href="https://youtu.be/egRoJsB2d0c">Demo Video</a>
+<br>
+
+<div align="center"><video src="https://github.com/user-attachments/assets/21657318-8507-4a80-ae82-4078fd80303d" width="800" autoplay loop muted></div>
+
+
+
+## 📰 News
+
+* **[2025.08.08]**  🔥🔥 Release our pretrained models and training code.
+
+## 🌟 Introduction
+RynnVLA-001 is a VLA model based on pretrained video generation model. The key insight is to implicitly transfer manipulation skills learned from human demonstrations in ego-centric videos to the manipulation of robot arms.
+<p align="center">
+<img src="assets/overview.png" style="max-width: 90%; height: auto;">
+
+<p>
+
+We finetune the baseline on the same dataset to evaluate the performance. The comparison results are shown in the following figure.
+<p align="center">
+<img src="assets/results.png" style="max-width: 90%; height: auto;">
+
+<p>
+
+## 🛠️ Requirements and Installation
+
+Install required packages:
+
+```bash
+pip install torch==2.2.0 torchvision==0.17.0 --index-url https://download.pytorch.org/whl/cu121
+
+pip install -r requirements.txt
+
+pip install flash-attn==2.5.8
+```
+
+## 🗝️ Training
+
+The training pipeline are shown as follows:
+
+<p align="center">
+<img src="assets/framework.png" style="max-width: 90%; height: auto;">
+
+<p>
+
+Here we provide instructions on how to finetune the model with your own LeRobot data（Stage 2 and Stage 3). We will release instructions on how to train models from scratch. Stay tuned!
+
+### Step 1: Prepare Pretrained Models
+
+Download [Chameleon](https://huggingface.co/Alpha-VLLM/Chameleon_7B_mGPT) Model and pretrained [RynnVLA-001-pretrained-video](https://huggingface.co/Alibaba-DAMO-Academy/RynnVLA-001-pretrained-video) models, and put the downloaded model under `pretrained_models`. The structure of the folder `pretrained_models` should be:
+```bash
+pretrained_models
+├── Chameleon
+│   ├── original_tokenizers
+│   │   ├── text_tokenizer.json
+│   │   ├── vqgan.ckpt
+│   │   └── vqgan.yaml
+│   ├── config.json
+│   └── ...
+└── RynnVLA-001-pretrained-video
+```
+
+### Step 2: Prepare Training Data
+
+If you have your own LeRobot data, please convert your LeRobot data into the hdf5 format. Here, we provide the conversion scripts. To execute the conversion successfully, we recommend you to install a seperate environment as suggested in [LeRobot](https://github.com/huggingface/lerobot) repo.
+
+```bash
+python misc/lerobot_data_convert.py --dataset_dir path-to-raw-lerobot-data --task_name dataset-name --save_dir path-to-save-hdf5-files
+```
+
+After the data conversion, you need to save the statistics and paths of all your data into a json file. You can use the following scripts to generate the json file. Before you run the scripts, please change the data path in the `misc/merge_data/config.yaml`.
+
+```bash
+cd misc/merge_data
+
+python misc/data_process_with_configs.py -c misc/merge_data/config.yaml
+```
+
+### Step 3: Prepare training script
+
+Before you start training, please change the paths in `./configs/actionvae/actionvae_lerobot.yml` and `./configs/lerobot/lerobot_exp.yml` to corresponding local paths.
+
+```bash
+# Stage 2
+bash scripts/actionvae/action_vae.sh
+
+# Stage 3
+bash scripts/lerobot/lerobot.sh
+```
+
+
+## 👍 Acknowledgement
+The codebase of our RynnVLA-001 is refactored from [**Lumina-mGPT**](https://github.com/Alpha-VLLM/Lumina-mGPT) and [**Chameleon**](https://github.com/facebookresearch/chameleon). If your work is used in RynnVLA-001 but not mentioned in either this repo or the technical report, feel free to let us know :heart:.
+
+## 🔒 License
+
+This project is released under the Apache 2.0 license as found in the LICENSE file.
+The service is a research preview intended for **non-commercial use ONLY**. Please get in touch with us if you find any potential violations.

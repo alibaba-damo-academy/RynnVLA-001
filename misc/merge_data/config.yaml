@@ -1,0 +1,41 @@
+process_config:
+  target_dir: 'dir-to-statistics-path-files'
+  output_filename: 'data.json'
+  chunk_size: 20
+  percentile_range: [1, 99]
+
+tasks:
+  task_1:
+    task_name: 'task_name_1'
+    data_pattern: # if the data is in multiple directories, you can specify multiple directories
+      - 'your-path-to-task1/*.hdf5'
+      - 'your-path-to-task1/*.hdf5'
+    instructions: # instructions for the task, you can add multiple instructions
+      - 'xxxx'
+    exclude_episodes: # episodes to exclude from training
+      - 'episode_xxxx'
+    chunk_size: 20
+    required_keys:
+      - 'action'
+      - 'timestamp'
+      - 'obs/front_image'
+      - 'obs/wrist_image'
+      - 'obs/state'
+    min_trajectory_length: 0
+  task_2:
+    task_name: 'task_name_2'
+    data_pattern: # if the data is in multiple directories, you can specify multiple directories
+      - 'your-path-to-task1/*.hdf5'
+      - 'your-path-to-task1/*.hdf5'
+    instructions: # instructions for the task, you can add multiple instructions
+      - 'xxxx'
+    exclude_episodes: # episodes to exclude from training
+      - 'episode_xxxx'
+    chunk_size: 20
+    required_keys:
+      - 'action'
+      - 'timestamp'
+      - 'obs/front_image'
+      - 'obs/wrist_image'
+      - 'obs/state'
+    min_trajectory_length: 0
