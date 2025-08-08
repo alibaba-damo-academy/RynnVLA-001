@@ -8,7 +8,7 @@ RynnVLA-001: A Vision-Language-Action Model Boosted by Generative Priors</a></h3
 
 
 <p align="center">
-        🤗 <a href="https://huggingface.co/Alibaba-DAMO-Academy/RynnVLA-001-pretrained-video">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp🤖 <a href="https://modelscope.cn/models/DAMO_Academy/RynnVLA-001-pretrained-video">ModelScope</a>&nbsp&nbsp ｜ &nbsp&nbsp🖥️ <a href="https://youtu.be/egRoJsB2d0c">Demo Video</a>
+        🤗 <a href="https://huggingface.co/Alibaba-DAMO-Academy/RynnVLA-001-pretrained-video">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp🤖 <a href="https://modelscope.cn/models/DAMO_Academy/RynnVLA-001-pretrained-video">ModelScope</a>&nbsp&nbsp ｜ &nbsp&nbsp🖥️ <a href="https://youtu.be/egRoJsB2d0c">Demo Video (Youtube) </a>  ｜ &nbsp&nbsp🖥️ <a href="https://www.bilibili.com/video/BV1hVt2zME2B">Demo Video (Bilibili) </a>
 <br>
 
 <div align="center"><video src="https://github.com/user-attachments/assets/21657318-8507-4a80-ae82-4078fd80303d" width="800" autoplay loop muted></div>
