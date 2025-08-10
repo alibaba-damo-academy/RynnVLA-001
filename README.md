@@ -8,7 +8,7 @@ RynnVLA-001: A Vision-Language-Action Model Boosted by Generative Priors</a></h3
 
 
 <p align="center">
-        🤗 <a href="https://huggingface.co/Alibaba-DAMO-Academy/RynnVLA-001-pretrained-video">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp🤖 <a href="https://modelscope.cn/models/DAMO_Academy/RynnVLA-001-pretrained-video">ModelScope</a>&nbsp&nbsp ｜ &nbsp&nbsp🖥️ <a href="https://youtu.be/egRoJsB2d0c">Demo Video (Youtube) </a>  ｜ &nbsp&nbsp🖥️ <a href="https://www.bilibili.com/video/BV1hVt2zME2B">Demo Video (Bilibili) </a>
+        🤗 <a href="https://huggingface.co/Alibaba-DAMO-Academy/RynnVLA-001-7B-Base">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp🤖 <a href="https://modelscope.cn/models/DAMO_Academy/RynnVLA-001-7B-Base">ModelScope</a>&nbsp&nbsp ｜ &nbsp&nbsp🖥️ <a href="https://youtu.be/egRoJsB2d0c">Demo Video (Youtube) </a>  ｜ &nbsp&nbsp🖥️ <a href="https://www.bilibili.com/video/BV1hVt2zME2B">Demo Video (Bilibili) </a>
 <br>
 
 <div align="center"><video src="https://github.com/user-attachments/assets/21657318-8507-4a80-ae82-4078fd80303d" width="800" autoplay loop muted></div>
@@ -57,7 +57,7 @@ Here we provide instructions on how to finetune the model with your own LeRobot 
 
 ### Step 1: Prepare Pretrained Models
 
-Download [Chameleon](https://huggingface.co/Alpha-VLLM/Chameleon_7B_mGPT) Model and pretrained [RynnVLA-001-pretrained-video](https://huggingface.co/Alibaba-DAMO-Academy/RynnVLA-001-pretrained-video) models, and put the downloaded model under `pretrained_models`. The structure of the folder `pretrained_models` should be:
+Download [Chameleon](https://huggingface.co/Alpha-VLLM/Chameleon_7B_mGPT) Model and pretrained [RynnVLA-001-7B-Base](https://huggingface.co/Alibaba-DAMO-Academy/RynnVLA-001-7B-Base) models, and put the downloaded model under `pretrained_models`. The structure of the folder `pretrained_models` should be:
 ```bash
 pretrained_models
 ├── Chameleon
@@ -67,7 +67,7 @@ pretrained_models
 │   │   └── vqgan.yaml
 │   ├── config.json
 │   └── ...
-└── RynnVLA-001-pretrained-video
+└── RynnVLA-001-7B-Base
 ```
 
 ### Step 2: Prepare Training Data

@@ -31,7 +31,7 @@ condition_frame_num: 1
 ckpt_max_keep: -1
 use_wrist_frame: True
 
-init_from: ./pretrained_models/RynnVLA-001-pretrained-video
+init_from: ./pretrained_models/RynnVLA-001-7B-Base
 resume_path: ~
 load_pretrain: True
 
