@@ -106,6 +106,8 @@ Here, we provide an example code for the inference on lerobot. You can adapt thi
 
 Please refer to `inference_lerobot.py` for details.
 
+You may need to upgrade the version of transformers to 4.46.3 if any error occurs.
+
 
 ## 👍 Acknowledgement
 The codebase of our RynnVLA-001 is refactored from [**Lumina-mGPT**](https://github.com/Alpha-VLLM/Lumina-mGPT) and [**Chameleon**](https://github.com/facebookresearch/chameleon). If your work is used in RynnVLA-001 but not mentioned in either this repo or the technical report, feel free to let us know :heart:.
