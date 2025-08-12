@@ -1574,11 +1574,11 @@ class RynnVLAForActionPrediction(ChameleonPreTrainedModel):
         self.lm_head = nn.Linear(config.hidden_size, config.vocab_size, bias=False)
         self.replace_inputs_with_action = getattr(config, 'replace_inputs_with_action', True)
 
-        self.state_projection = nn.Linear(config.state_dim, config.hidden_size)
-
+        self.state_projection = nn.Linear(6, config.hidden_size)
+        
         if self.replace_inputs_with_action:
             self.action_projection = nn.Linear(64, config.hidden_size)
-
+        
         if config.action_head_type == 'one_layer':
             self.action_head = nn.Linear(config.hidden_size, 64)
         elif config.action_head_type == 'MLP':
@@ -1595,17 +1595,18 @@ class RynnVLAForActionPrediction(ChameleonPreTrainedModel):
                 )
         else:
             raise NotImplementedError
-
+        
         self.action_idx = 65536
 
         self.state_idx = 65539
-
+        
         # Initialize weights and apply final processing
         self.post_init()
 
     def _sample(
         self,
         input_ids: torch.LongTensor,
+        state_embeds: torch.Tensor,
         logits_processor: LogitsProcessorList,
         stopping_criteria: StoppingCriteriaList,
         generation_config: GenerationConfig,
@@ -1681,16 +1682,17 @@ class RynnVLAForActionPrediction(ChameleonPreTrainedModel):
         ):
             # prepare model inputs
             model_inputs = self.prepare_inputs_for_generation(input_ids, **model_kwargs)
-
+            
             # prepare variable output controls (note: some models won't accept all output controls)
             model_inputs.update({"output_attentions": output_attentions} if output_attentions else {})
             model_inputs.update({"output_hidden_states": output_hidden_states} if output_hidden_states else {})
+            model_inputs.update({"state_embeds": state_embeds})
 
             # forward pass to get next token
             outputs = self(**model_inputs, return_dict=True)
-
+            
             action_pred = outputs['action_pred']
-
+            
             # synced_gpus: don't waste resources running the code we don't need; kwargs must be updated before skipping
             model_kwargs = self._update_model_kwargs_for_generation(
                 outputs,
@@ -1755,14 +1757,14 @@ class RynnVLAForActionPrediction(ChameleonPreTrainedModel):
 
         if streamer is not None:
             streamer.end()
-
+        
         if return_dict_in_generate:
             if self.config.is_encoder_decoder:
                 return GenerateEncoderDecoderOutput(
                     sequences=input_ids,
                     scores=scores,
                     logits=raw_logits,
-                    encoder_attentions=encoder_attentions,
+                    encoder_attentions=encoder_attentions,                    
                     encoder_hidden_states=encoder_hidden_states,
                     decoder_attentions=decoder_attentions,
                     cross_attentions=cross_attentions,
@@ -1780,11 +1782,12 @@ class RynnVLAForActionPrediction(ChameleonPreTrainedModel):
                 )
         else:
             return input_ids, action_pred
-
+    
     @torch.no_grad()
     def generate(
         self,
         inputs: Optional[torch.Tensor] = None,
+        state_embeds: Optional[torch.Tensor] = None,
         generation_config: Optional[GenerationConfig] = None,
         logits_processor: Optional[LogitsProcessorList] = None,
         stopping_criteria: Optional[StoppingCriteriaList] = None,
@@ -2040,7 +2043,7 @@ class RynnVLAForActionPrediction(ChameleonPreTrainedModel):
         # Set model_kwargs `use_cache` so we can use it later in forward runs
         model_kwargs["use_cache"] = generation_config.use_cache
 
-
+        
         # 10. go into different generation modes
         if generation_mode == GenerationMode.ASSISTED_GENERATION:
             if generation_config.num_return_sequences > 1:
@@ -2128,17 +2131,18 @@ class RynnVLAForActionPrediction(ChameleonPreTrainedModel):
                 is_encoder_decoder=self.config.is_encoder_decoder,
                 **model_kwargs,
             )
-
+            
             # 12. run sample (it degenerates to greedy search when `generation_config.do_sample=False`)
             result, action_pred = self._sample(
                 input_ids,
+                state_embeds,
                 logits_processor=prepared_logits_processor,
                 stopping_criteria=prepared_stopping_criteria,
                 generation_config=generation_config,
                 synced_gpus=synced_gpus,
                 streamer=streamer,
                 **model_kwargs,
-            )
+            )    
 
         elif generation_mode in (GenerationMode.BEAM_SAMPLE, GenerationMode.BEAM_SEARCH):
             # 11. prepare beam search scorer
@@ -2301,7 +2305,7 @@ class RynnVLAForActionPrediction(ChameleonPreTrainedModel):
                 result.past_key_values = result.past_key_values.to_legacy_cache()
         return result, action_pred
 
-
+        
     def get_input_embeddings(self):
         return self.model.embed_tokens
 
@@ -2319,20 +2323,20 @@ class RynnVLAForActionPrediction(ChameleonPreTrainedModel):
 
     def get_decoder(self):
         return self.model
-
+    
     def prepare_inputs_for_transformer_model(self, input_ids, state_embeds):
 
         state_selected = (input_ids == self.state_idx)
-
+        
         input_ids[state_selected] = 0
-
+        
         inputs_embeds = self.model.embed_tokens(input_ids)
-
+        
         if state_embeds is not None:
             inputs_embeds[state_selected] = inputs_embeds[state_selected] * 0.0 + state_embeds
-
+        
         return inputs_embeds
-
+        
 
     @add_start_docstrings_to_model_forward(CHAMELEON_INPUTS_DOCSTRING)
     @replace_return_docstrings(output_type=CausalLMOutputWithPastAction, config_class=_CONFIG_FOR_DOC)
@@ -2365,12 +2369,12 @@ class RynnVLAForActionPrediction(ChameleonPreTrainedModel):
         Example:
 
         ```python
-        >>> from transformers import ChameleonProcessor, RynnVLAForImg2VidGen
+        >>> from transformers import ChameleonProcessor, ChameleonForConditionalGeneration
         >>> import torch
         >>> import requests
         >>> from PIL import Image
 
-        >>> model = RynnVLAForImg2VidGen.from_pretrained("facebook/chameleon-7b", torch_dtype=torch.bfloat16)
+        >>> model = ChameleonForConditionalGeneration.from_pretrained("facebook/chameleon-7b", torch_dtype=torch.bfloat16)
         >>> processor = ChameleonProcessor.from_pretrained("facebook/chameleon-7b")
 
         >>> prompt = "I used to know a lot about constellations when I was younger, but as I grew older, I forgot most of what I knew. These are the only two constellations that I really remember now.<image><image>I would like for you to tell me about 3 more constellations and give me a little bit of history about the constellation."
@@ -2399,7 +2403,7 @@ class RynnVLAForActionPrediction(ChameleonPreTrainedModel):
             if action_embeds is not None:
                 action_embeds = torch.stack(action_embeds, dim=0)
             action_selected = (input_ids == self.action_idx)
-
+            
             outputs = self.model(
                 input_ids=None,
                 pixel_values=pixel_values,
@@ -2417,9 +2421,9 @@ class RynnVLAForActionPrediction(ChameleonPreTrainedModel):
         hidden_states = outputs[0]
         logits = self.lm_head(hidden_states)
         logits = logits.float()
-
+    
         action_pred = self.action_head(hidden_states)
-
+        
         if self.config.mask_image_logits:
             # Disallow image tokens which does not include special begin-image and end-image tokens
             image_tokens = self.model.vocabulary_mapping.image_tokens
@@ -2445,7 +2449,7 @@ class RynnVLAForActionPrediction(ChameleonPreTrainedModel):
             action_loss = action_loss_cls(shift_action_pred[shift_action_selected], action_embeds)
         else:
             action_loss = 0
-
+        
         if not return_dict:
             output = (logits,) + outputs[1:]
             return (loss, ) + (action_loss, ) + output if loss is not None else output

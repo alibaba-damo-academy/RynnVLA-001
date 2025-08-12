@@ -54,7 +54,7 @@ The training pipeline are shown as follows:
 
 <p>
 
-Here we provide instructions on how to finetune the model with your own LeRobot data（Stage 2 and Stage 3). We will release instructions on how to train models from scratch. Stay tuned!
+Here we provide instructions on how to finetune the model with your own LeRobot data （Stage 2 and Stage 3). We will release instructions on how to train models from scratch. Stay tuned!
 
 ### Step 1: Prepare Pretrained Models
 

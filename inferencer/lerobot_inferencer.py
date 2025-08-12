@@ -118,8 +118,6 @@ class LeRobotInferencer(BaseModel):
         self.min_max_norm = configs['train_dataset']['min_max_norm']
         self.mean_std_norm = configs['train_dataset']['mean_std_norm']
 
-        self.post_process_type = configs['post_process_type']
-
         # action normalization params
         with open(configs['train_dataset']['data_path'], "r") as f:
             action_stats = json.load(f)
