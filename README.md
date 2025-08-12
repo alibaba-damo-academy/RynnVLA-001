@@ -98,6 +98,11 @@ bash scripts/actionvae/action_vae.sh
 # Stage 3
 bash scripts/lerobot/lerobot.sh
 ```
+## 🤖 Inference
+
+Here, we provide an example code for the inference on lerobot. You can adapt this code to interact with your robot arm for input and output.
+
+Please refer to `inference_lerobot.py` for details.
 
 
 ## 👍 Acknowledgement

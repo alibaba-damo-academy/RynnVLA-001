@@ -34,10 +34,10 @@ def main():
                                   device)
 
 
-    img = None
-    wrist_img = None
-    lang_annotation = None
-    state = None
+    img = None # image from the front camera, type: numpy.ndarray, uint8, shape: (H, W, 3)
+    wrist_img = None # image from the wrist camera, type: numpy.ndarray, uint8, shape: (H, W, 3)
+    lang_annotation = None # str: "Place the strawberries from the table into the cup."
+    state = None # dict: state of the robot, shape: (6, ) for lerobot
 
     obs = {
         'rgb_obs': {
