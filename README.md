@@ -20,6 +20,7 @@ RynnVLA-001: A Vision-Language-Action Model Boosted by Generative Priors</a></h3
 
 * **[2025.08.08]**  🔥🔥 Release our pretrained models and training code.
 
+
 ## 🌟 Introduction
 RynnVLA-001 is a VLA model based on pretrained video generation model. The key insight is to implicitly transfer manipulation skills learned from human demonstrations in ego-centric videos to the manipulation of robot arms.
 <p align="center">
