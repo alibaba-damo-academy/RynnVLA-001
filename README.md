@@ -15,7 +15,6 @@ RynnVLA-001: A Vision-Language-Action Model Boosted by Generative Priors</a></h3
 <div align="center"><video src="https://github.com/user-attachments/assets/21657318-8507-4a80-ae82-4078fd80303d" width="800" autoplay loop muted></div>
 
 
-
 ## 📰 News
 
 * **[2025.08.08]**  🔥🔥 Release our pretrained models and training code.
@@ -113,7 +112,28 @@ You may need to upgrade the version of transformers to 4.46.3 if any error occur
 ## 👍 Acknowledgement
 The codebase of our RynnVLA-001 is refactored from [**Lumina-mGPT**](https://github.com/Alpha-VLLM/Lumina-mGPT) and [**Chameleon**](https://github.com/facebookresearch/chameleon). If your work is used in RynnVLA-001 but not mentioned in either this repo or the technical report, feel free to let us know :heart:.
 
+<details open><summary>💡 Other featured projects from our RynnBot family ✨. </summary><p>
+    
+<!--  may -->
+> [**RynnEC: Bringing MLLMs into Embodied World**](https://github.com/alibaba-damo-academy/RynnEC) <br>
+> Ronghao Dang*, Yuqian Yuan*, Yunxuan Mao*, Kehan Li*, Jiangpin Liu, Zhikai Wang, Fan Wang, Deli Zhao, Xin Li <br>
+[![github](https://img.shields.io/badge/-Github-black?logo=github)](https://github.com/alibaba-damo-academy/RynnEC)  [![github](https://img.shields.io/github/stars/alibaba-damo-academy/RynnEC.svg?style=social)](https://github.com/alibaba-damo-academy/RynnEC) [![arXiv](https://img.shields.io/badge/Arxiv-2508.14160-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2508.14160) <be> 
+
+> [**RynnRCP: Open Robotics Context Protocol and RobotMotion**](https://github.com/alibaba-damo-academy/RynnRCP) <br>
+> RynnBot Team <br>
+[![github](https://img.shields.io/badge/-Github-black?logo=github)](https://github.com/alibaba-damo-academy/RynnRCP)  [![github](https://img.shields.io/github/stars/alibaba-damo-academy/RynnRCP.svg?style=social)](https://github.com/alibaba-damo-academy/RynnRCP)  <br>
+
+> [**WorldVLA: Towards Autoregressive Action World Model**](https://arxiv.org/abs/2506.21539) <br>
+> Jun Cen, Chaohui Yu, Hangjie Yuan, Yuming Jiang, Siteng Huang, Jiayan Guo, Xin Li, Yibing Song, Hao Luo, Fan Wang, Deli Zhao, Hao Chen <br>
+[![github](https://img.shields.io/badge/-Github-black?logo=github)](https://github.com/alibaba-damo-academy/WorldVLA)  [![github](https://img.shields.io/github/stars/alibaba-damo-academy/WorldVLA.svg?style=social)](https://github.com/alibaba-damo-academy/WorldVLA)  [![arXiv](https://img.shields.io/badge/Arxiv-2506.21539-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2506.21539) <br>
+
+</p></details>
+
+
 ## 🔒 License
 
 This project is released under the Apache 2.0 license as found in the LICENSE file.
 The service is a research preview intended for **non-commercial use ONLY**. Please get in touch with us if you find any potential violations.
+
+
+
