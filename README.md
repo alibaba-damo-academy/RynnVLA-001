@@ -25,11 +25,12 @@ RynnVLA-001 is a VLA model based on pretrained video generation model. The key i
 <p align="center">
 <img src="assets/overview.png" style="max-width: 90%; height: auto;">
 
+
 <p>
 
 We finetune the baseline on the same dataset to evaluate the performance. The comparison results are shown in the following figure.
 <p align="center">
-<img src="assets/results.png" style="max-width: 90%; height: auto;">
+<img src="https://github.com/user-attachments/assets/8e5960f5-a232-4dd3-9dca-df067caa2f30" style="max-width: 90%; height: auto;">
 
 <p>
 
