@@ -8,7 +8,7 @@ RynnVLA-001: Using Human Demonstrations to Improve Robot Manipulation</a></h3>
 
 
 <p align="center">
-        📃 <a href="https://huggingface.co/blog/Alibaba-DAMO-Academy/rynnvla-001"> Tech Blog</a> &nbsp&nbsp | &nbsp&nbsp🤗 <a href="https://huggingface.co/Alibaba-DAMO-Academy/RynnVLA-001-7B-Base">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp🤖 <a href="https://modelscope.cn/models/DAMO_Academy/RynnVLA-001-7B-Base">ModelScope</a> <br>
+        📃 <a href="https://huggingface.co/blog/Alibaba-DAMO-Academy/rynnvla-001"> Tech Blog</a> &nbsp&nbsp | &nbsp&nbsp🤗 <a href="https://huggingface.co/Alibaba-DAMO-Academy/RynnVLA-001-7B-Trajectory">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp🤖 <a href="https://modelscope.cn/models/DAMO_Academy/RynnVLA-001-7B-Trajectory">ModelScope</a> <br>
         🖥️ <a href="https://youtu.be/nTv0SCvejlE">Demo Video (Youtube) </a>  ｜ &nbsp&nbsp🖥️ <a href="https://www.bilibili.com/video/BV1hVt2zME2B">Demo Video (Bilibili) </a>
 <br>
 
@@ -17,6 +17,7 @@ RynnVLA-001: Using Human Demonstrations to Improve Robot Manipulation</a></h3>
 
 ## 📰 News
 
+* **[2025.09.18]**  🔥🔥 Release our technical report.
 * **[2025.08.08]**  🔥🔥 Release our pretrained models and training code.
 
 
@@ -46,6 +47,15 @@ pip install -r requirements.txt
 pip install flash-attn==2.5.8
 ```
 
+## 🌍 Model Zoo
+
+| Model |  Stage | Downloads | Notes
+|:---|:---|:---:| :---|
+| RynnVLA-001-7B-Base | Stage 1 | [HuggingFace](https://huggingface.co/Alibaba-DAMO-Academy/RynnVLA-001-7B-Base) / [ModelScope](https://modelscope.cn/models/DAMO_Academy/RynnVLA-001-7B-Base) |  Stage 1: Ego-Centric Video Generative Pretraining.<br>Trained on ego-centric manipulation videos.|
+| RynnVLA-001-7B-Trajectory | Stage 2 | [HuggingFace](https://huggingface.co/Alibaba-DAMO-Academy/RynnVLA-001-7B-Trajectory) / [ModelScope](https://modelscope.cn/models/DAMO_Academy/RynnVLA-001-7B-Trajectory) | Stage 2: Human-Centric Trajectory-Aware Video Modeling.<br>Initialized with weights of Stage 1, and trained to predict human trajectories and frames.|
+
+Both of the models can be used as the pretrained model for VLA finetuning (Stage 3). Our full model is initialized with RynnVLA-001-7B-Trajectory.
+
 ## 🗝️ Training
 
 The training pipeline are shown as follows:
@@ -59,7 +69,7 @@ Here we provide instructions on how to finetune the model with your own LeRobot 
 
 ### Step 1: Prepare Pretrained Models
 
-Download [Chameleon](https://huggingface.co/Alpha-VLLM/Chameleon_7B_mGPT) Model and pretrained [RynnVLA-001-7B-Base](https://huggingface.co/Alibaba-DAMO-Academy/RynnVLA-001-7B-Base) models, and put the downloaded model under `pretrained_models`. The structure of the folder `pretrained_models` should be:
+Download [Chameleon](https://huggingface.co/Alpha-VLLM/Chameleon_7B_mGPT) Model and pretrained [RynnVLA-001-7B-Trajectory](https://huggingface.co/Alibaba-DAMO-Academy/RynnVLA-001-7B-Trajectory) models, and put the downloaded model under `pretrained_models`. The structure of the folder `pretrained_models` should be:
 ```bash
 pretrained_models
 ├── Chameleon
@@ -69,7 +79,7 @@ pretrained_models
 │   │   └── vqgan.yaml
 │   ├── config.json
 │   └── ...
-└── RynnVLA-001-7B-Base
+└── RynnVLA-001-7B-Trajectory
 ```
 
 ### Step 2: Prepare Training Data
