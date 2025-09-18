@@ -1,9 +1,9 @@
-<p align="center">
+<img width="972" height="77" alt="image" src="https://github.com/user-attachments/assets/3311cfa9-2662-430d-9e5c-f2389c786f90" /><p align="center">
     <img src="./assets/logo.png" width="150" style="margin-bottom: 0.2;"/>
 <p>
 
 <h3 align="center"><a href="" style="color:#9C276A">
-RynnVLA-001: A Vision-Language-Action Model Boosted by Generative Priors</a></h3>
+RynnVLA-001: Using Human Demonstrations to Improve Robot Manipulation</a></h3>
 <h5 align="center"> If our project helps you, please give us a star ⭐ on GitHub to support us. 🙏🙏 </h2>
 
 
