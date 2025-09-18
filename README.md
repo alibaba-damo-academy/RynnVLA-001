@@ -55,7 +55,7 @@ The training pipeline are shown as follows:
 
 <p>
 
-Here we provide instructions on how to finetune the model with your own LeRobot data （Stage 2 and Stage 3). We will release instructions on how to train models from scratch. Stay tuned!
+Here we provide instructions on how to finetune the model with your own LeRobot data （ActionVAE and Stage 3). We will release instructions on how to train models from scratch. Stay tuned!
 
 ### Step 1: Prepare Pretrained Models
 
@@ -93,7 +93,7 @@ python misc/data_process_with_configs.py -c misc/merge_data/config.yaml
 Before you start training, please change the paths in `./configs/actionvae/actionvae_lerobot.yml` and `./configs/lerobot/lerobot_exp.yml` to corresponding local paths.
 
 ```bash
-# Stage 2
+# ActionVAE
 # Empirically, we train action_vae on our dataset for 30000 iterations with batch size of 16 * 8 (GPUs).
 # You may visualize the reconstructed trajectory to check the quality.
 bash scripts/actionvae/action_vae.sh
@@ -114,11 +114,11 @@ You may need to upgrade the version of transformers to 4.46.3 if any error occur
 The codebase of our RynnVLA-001 is refactored from [**Lumina-mGPT**](https://github.com/Alpha-VLLM/Lumina-mGPT) and [**Chameleon**](https://github.com/facebookresearch/chameleon). If your work is used in RynnVLA-001 but not mentioned in either this repo or the technical report, feel free to let us know :heart:.
 
 <details open><summary>💡 Other featured projects from our RynnBot family ✨. </summary><p>
-    
+
 <!--  may -->
 > [**RynnEC: Bringing MLLMs into Embodied World**](https://github.com/alibaba-damo-academy/RynnEC) <br>
 > Ronghao Dang*, Yuqian Yuan*, Yunxuan Mao*, Kehan Li*, Jiangpin Liu, Zhikai Wang, Fan Wang, Deli Zhao, Xin Li <br>
-[![github](https://img.shields.io/badge/-Github-black?logo=github)](https://github.com/alibaba-damo-academy/RynnEC)  [![github](https://img.shields.io/github/stars/alibaba-damo-academy/RynnEC.svg?style=social)](https://github.com/alibaba-damo-academy/RynnEC) [![arXiv](https://img.shields.io/badge/Arxiv-2508.14160-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2508.14160) <be> 
+[![github](https://img.shields.io/badge/-Github-black?logo=github)](https://github.com/alibaba-damo-academy/RynnEC)  [![github](https://img.shields.io/github/stars/alibaba-damo-academy/RynnEC.svg?style=social)](https://github.com/alibaba-damo-academy/RynnEC) [![arXiv](https://img.shields.io/badge/Arxiv-2508.14160-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2508.14160) <be>
 
 > [**RynnRCP: Open Robotics Context Protocol and RobotMotion**](https://github.com/alibaba-damo-academy/RynnRCP) <br>
 > RynnBot Team <br>
