@@ -49,8 +49,8 @@ pip install flash-attn==2.5.8
 
 ## 🌍 Model Zoo
 
-| Model |  Stage | Downloads | Notes
-|:---|:---|:---:| :---|
+| Model |  &nbsp;&nbsp;&nbsp;Stage&nbsp;&nbsp; | Downloads | Notes
+|:---|:----:|:-----:| :---|
 | RynnVLA-001-7B-Base | Stage 1 | [HuggingFace](https://huggingface.co/Alibaba-DAMO-Academy/RynnVLA-001-7B-Base) / [ModelScope](https://modelscope.cn/models/DAMO_Academy/RynnVLA-001-7B-Base) |  Stage 1: Ego-Centric Video Generative Pretraining.<br>Trained on ego-centric manipulation videos.|
 | RynnVLA-001-7B-Trajectory | Stage 2 | [HuggingFace](https://huggingface.co/Alibaba-DAMO-Academy/RynnVLA-001-7B-Trajectory) / [ModelScope](https://modelscope.cn/models/DAMO_Academy/RynnVLA-001-7B-Trajectory) | Stage 2: Human-Centric Trajectory-Aware Video Modeling.<br>Initialized with weights of Stage 1, and trained to predict human trajectories and frames.|
 
