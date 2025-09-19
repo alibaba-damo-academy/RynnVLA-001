@@ -8,7 +8,7 @@ RynnVLA-001: Using Human Demonstrations to Improve Robot Manipulation</a></h3>
 
 
 <p align="center">
-        📃 <a href="https://huggingface.co/blog/Alibaba-DAMO-Academy/rynnvla-001"> Tech Blog</a> &nbsp&nbsp | &nbsp&nbsp🤗 <a href="https://huggingface.co/Alibaba-DAMO-Academy/RynnVLA-001-7B-Trajectory">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp🤖 <a href="https://modelscope.cn/models/DAMO_Academy/RynnVLA-001-7B-Trajectory">ModelScope</a> <br>
+        📃  <a href="https://arxiv.org/pdf/2509.15212"> Tech Report</a> &nbsp&nbsp | &nbsp&nbsp 📑 <a href="https://huggingface.co/blog/Alibaba-DAMO-Academy/rynnvla-001"> Blog</a> &nbsp&nbsp | &nbsp&nbsp🤗 <a href="https://huggingface.co/Alibaba-DAMO-Academy/RynnVLA-001-7B-Trajectory">Hugging Face</a>&nbsp&nbsp | &nbsp&nbsp🤖 <a href="https://modelscope.cn/models/DAMO_Academy/RynnVLA-001-7B-Trajectory">ModelScope</a> <br>
         🖥️ <a href="https://youtu.be/nTv0SCvejlE">Demo Video (Youtube) </a>  ｜ &nbsp&nbsp🖥️ <a href="https://www.bilibili.com/video/BV1hVt2zME2B">Demo Video (Bilibili) </a>
 <br>
 
@@ -117,6 +117,18 @@ Here, we provide an example code for the inference on lerobot. You can adapt thi
 Please refer to `inference_lerobot.py` for details.
 
 You may need to upgrade the version of transformers to 4.46.3 if any error occurs.
+
+📑 Citation
+
+```bibtex
+@article{jiang2025rynnvla001,
+  title={RynnVLA-001: Using Human Demonstrations to Improve Robot Manipulation},
+  author={Jiang, Yuming and Huang, Siteng and Xue, Shengke and Zhao, Yaxi and Cen, Jun and Leng, Sicong and Li, Kehan and Guo, Jiayan and Wang, Kexiang and Chen, Mingxiu and Wang, Fan and Zhao, Deli and Li, Xin},
+  journal={arXiv preprint arXiv:2509.15212},
+  year={2025}
+}
+```
+
 
 
 ## 👍 Acknowledgement
