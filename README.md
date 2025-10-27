@@ -103,7 +103,7 @@ Before you start training, please change the paths in `./configs/actionvae/actio
 
 ```bash
 # ActionVAE
-# Empirically, we train action_vae on our dataset for 30000 iterations with batch size of 16 * 8 (GPUs).
+# Empirically, we train action_vae on our dataset for 300000 iterations with batch size of 16 * 8 (GPUs).
 # You may visualize the reconstructed trajectory to check the quality.
 bash scripts/actionvae/action_vae.sh
 
