@@ -137,17 +137,22 @@ The codebase of our RynnVLA-001 is refactored from [**Lumina-mGPT**](https://git
 <details open><summary>💡 Other featured projects from our RynnBot family ✨. </summary><p>
 
 <!--  may -->
-> [**RynnEC: Bringing MLLMs into Embodied World**](https://github.com/alibaba-damo-academy/RynnEC) <br>
-> Ronghao Dang*, Yuqian Yuan*, Yunxuan Mao*, Kehan Li*, Jiangpin Liu, Zhikai Wang, Fan Wang, Deli Zhao, Xin Li <br>
-[![github](https://img.shields.io/badge/-Github-black?logo=github)](https://github.com/alibaba-damo-academy/RynnEC)  [![github](https://img.shields.io/github/stars/alibaba-damo-academy/RynnEC.svg?style=social)](https://github.com/alibaba-damo-academy/RynnEC) [![arXiv](https://img.shields.io/badge/Arxiv-2508.14160-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2508.14160) <be>
+
+> [**RynnVLA-002: A Unified Vision-Language-Action and World Model**](https://arxiv.org/abs/2511.17502) <br>
+> Jun Cen*, Siteng Huang*, Yuqian Yuan*, Kehan Li*, Hangjie Yuan, Chaohui Yu, Yuming Jiang, Jiayan Guo, Xin Li, Hao Luo, Fan Wang, Deli Zhao, Hao Chen <br>
+[![github](https://img.shields.io/badge/-Github-black?logo=github)](https://github.com/alibaba-damo-academy/WorldVLA)  [![github](https://img.shields.io/github/stars/alibaba-damo-academy/WorldVLA.svg?style=social)](https://github.com/alibaba-damo-academy/WorldVLA)  [![arXiv](https://img.shields.io/badge/Arxiv-2506.21539-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2506.21539) <br>
 
 > [**RynnRCP: Open Robotics Context Protocol and RobotMotion**](https://github.com/alibaba-damo-academy/RynnRCP) <br>
 > RynnBot Team <br>
 [![github](https://img.shields.io/badge/-Github-black?logo=github)](https://github.com/alibaba-damo-academy/RynnRCP)  [![github](https://img.shields.io/github/stars/alibaba-damo-academy/RynnRCP.svg?style=social)](https://github.com/alibaba-damo-academy/RynnRCP)  <br>
 
-> [**WorldVLA: Towards Autoregressive Action World Model**](https://arxiv.org/abs/2506.21539) <br>
-> Jun Cen, Chaohui Yu, Hangjie Yuan, Yuming Jiang, Siteng Huang, Jiayan Guo, Xin Li, Yibing Song, Hao Luo, Fan Wang, Deli Zhao, Hao Chen <br>
-[![github](https://img.shields.io/badge/-Github-black?logo=github)](https://github.com/alibaba-damo-academy/WorldVLA)  [![github](https://img.shields.io/github/stars/alibaba-damo-academy/WorldVLA.svg?style=social)](https://github.com/alibaba-damo-academy/WorldVLA)  [![arXiv](https://img.shields.io/badge/Arxiv-2506.21539-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2506.21539) <br>
+> [**RynnMotion: All-In-One Tookit for Fast Robot Prototyping and Heterogeneous Teleoperation**](https://github.com/alibaba-damo-academy/RynnMotion) <br>
+> RynnBot Team <br>
+[![github](https://img.shields.io/badge/-Github-black?logo=github)](https://github.com/alibaba-damo-academy/RynnMotion)  [![github](https://img.shields.io/github/stars/alibaba-damo-academy/RynnMotion.svg?style=social)](https://github.com/alibaba-damo-academy/RynnMotion)  <br>
+
+> [**RynnEC: Bringing MLLMs into Embodied World**](https://github.com/alibaba-damo-academy/RynnEC) <br>
+> Ronghao Dang*, Yuqian Yuan*, Yunxuan Mao*, Kehan Li*, Jiangpin Liu, Zhikai Wang, Fan Wang, Deli Zhao, Xin Li <br>
+[![github](https://img.shields.io/badge/-Github-black?logo=github)](https://github.com/alibaba-damo-academy/RynnEC)  [![github](https://img.shields.io/github/stars/alibaba-damo-academy/RynnEC.svg?style=social)](https://github.com/alibaba-damo-academy/RynnEC) [![arXiv](https://img.shields.io/badge/Arxiv-2508.14160-b31b1b.svg?logo=arXiv)](https://arxiv.org/abs/2508.14160) <be>
 
 </p></details>
 
