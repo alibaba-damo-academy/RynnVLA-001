@@ -645,8 +645,6 @@ class RynnVLAActionPredictionTrainer(ABC):
             labels_list.append(labels)
 
         return video_tokens_list, labels_list
-        return video_tokens_list, labels_list
-
 
     @torch.no_grad()
     def encode_batch_action_in_batch(self, actions, is_pad):
@@ -769,7 +767,6 @@ class RynnVLAActionPredictionTrainer(ABC):
 
                 if self.use_wrist_frame:
                     composed_examples += wrist_video_examples[video_idx][frame_idx * wrist_video_examples_per_frame: (frame_idx + 1) * wrist_video_examples_per_frame]
-
 
                 composed_examples += [self.state_token_id]
                 state_list += [state_episode[video_idx][frame_idx]]

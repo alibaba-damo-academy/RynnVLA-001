@@ -33,7 +33,8 @@ else:
         "ChameleonModel",
         "ChameleonPreTrainedModel",
         "ChameleonVQVAE",
-        "RynnVLAForActionPrediction"
+        "RynnVLAForActionPrediction",
+        "RynnVLAForActionPredictionQwen"
     ]
 
 try:
