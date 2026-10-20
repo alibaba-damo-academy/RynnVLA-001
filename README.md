@@ -118,6 +118,23 @@ Please refer to `inference_lerobot.py` for details.
 
 You may need to upgrade the version of transformers to 4.46.3 if any error occurs.
 
+### How to run the same on Intel's XPU
+
+Instead of the CUDA wheel and `flash-attn` from the installation step, install the XPU build of PyTorch. The model then runs with the SDPA attention that is already the default in the code:
+
+```bash
+pip install torch torchvision --index-url https://download.pytorch.org/whl/xpu
+pip install -r requirements.txt   # skip the triton line; use transformers==4.46.3
+```
+
+`inference_lerobot.py` and `LeRobotInferencer` now pick XPU first, then CUDA, then CPU. Pass `--device xpu:0` (or `cuda:0`, `cpu`) to choose one, and `ZE_AFFINITY_MASK=0` replaces `CUDA_VISIBLE_DEVICES=0` to select the card:
+
+```bash
+ZE_AFFINITY_MASK=0 python inference_lerobot.py --vla_ckpt_path path-to-checkpoint --action_vae_path path-to-action-vae.pth --configs_path configs/lerobot/lerobot_exp.yml --device xpu:0
+```
+
+`flash-attn` stays CUDA-only and is not needed off CUDA. Only the inference path is covered.
+
 📑 Citation
 
 ```bibtex

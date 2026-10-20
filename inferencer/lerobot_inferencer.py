@@ -11,6 +11,7 @@ from models.actionvae_model import ActionVAE
 from models.chameleon_model import chameleon_vae_ori
 from models.chameleon_model.chameleon import RynnVLAForActionPrediction
 from models.chameleon_model.tokenizer import Tokenizer
+from utils import device as device_utils
 
 
 def _convert_to_rgb(image):
@@ -47,8 +48,10 @@ class LeRobotInferencer(BaseModel):
                  pretrained_policy_ckpt,
                  precision,
                  configs,
-                 device,
+                 device=None,
                  condition_frame_num = 1):
+
+        device = device_utils.resolve_device(device)
 
         self.dtype = {"bf16": torch.bfloat16, "fp16": torch.float16, "fp32": torch.float32}[precision]
 
@@ -90,7 +93,7 @@ class LeRobotInferencer(BaseModel):
         self.tokenizer.tokenizer.add_tokens('<|image|>')
 
         self.action_tokenizer = ActionVAE(configs['actionvae_config'])
-        checkpoint = torch.load(configs['actionvae_pretrained_path'])
+        checkpoint = torch.load(configs['actionvae_pretrained_path'], map_location="cpu")
         self.action_tokenizer.load_state_dict(checkpoint,strict=True)
         self.action_tokenizer = self.action_tokenizer.to(self.model.device)
         self.action_tokenizer.eval()
@@ -238,7 +241,9 @@ class LeRobotInferencer(BaseModel):
         condition_tokens = torch.tensor(condition_tokens, dtype=torch.int64, device=self.model.device).unsqueeze(0)
 
         # inference forward pass
-        with torch.cuda.amp.autocast(dtype=self.dtype):
+        with torch.autocast(device_type=device_utils.device_type(self.model.device),
+                            dtype=self.dtype,
+                            enabled=device_utils.autocast_enabled(self.model.device, self.dtype)):
             generation_result, action_pred = self.model.generate(
                 condition_tokens, state_embeds, generation_config
             )
@@ -273,7 +278,7 @@ class LeRobotInferencer(BaseModel):
 
         decode_actions = [decode_actions]
 
-        torch.cuda.empty_cache()
+        device_utils.empty_cache(self.model.device)
 
         if len(decode_actions) == 0:
             output_actions = None

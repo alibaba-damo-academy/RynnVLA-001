@@ -34,8 +34,8 @@ else:
         "ChameleonPreTrainedModel",
         "ChameleonVQVAE",
         "RynnVLAForActionPrediction",
-        "RynnVLAForActionPredictionQwen"
     ]
+    _import_structure["modeling_qwen"] = ["RynnVLAForActionPredictionQwen"]
 
 try:
     if not is_vision_available():

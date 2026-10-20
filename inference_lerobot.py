@@ -5,6 +5,7 @@ import yaml
 from easydict import EasyDict
 
 from inferencer.lerobot_inferencer import LeRobotInferencer
+from utils.device import resolve_device
 
 
 def main():
@@ -13,7 +14,8 @@ def main():
     parser.add_argument('--action_vae_path', type=str)
     parser.add_argument('--configs_path', type=str, help="Path to the config json file")
     parser.add_argument("--precision", type=str, choices=["fp16", "bf16", "fp32"], default="bf16")
-    parser.add_argument('--device', default=0, type=int, help="CUDA device")
+    parser.add_argument('--device', default=None, type=str,
+                        help="Device such as xpu:0 or cuda:0 (default: XPU, then CUDA, then CPU)")
     args = parser.parse_args()
 
 
@@ -25,7 +27,7 @@ def main():
 
     opt['actionvae_pretrained_path'] = args.action_vae_path
 
-    device = torch.device('cuda:0')
+    device = resolve_device(args.device)
 
     # define models
     vla_model = LeRobotInferencer(args.vla_ckpt_path,
