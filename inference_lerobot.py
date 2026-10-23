@@ -25,7 +25,7 @@ def main():
 
     opt['actionvae_pretrained_path'] = args.action_vae_path
 
-    device = torch.device('cuda:0')
+    device = torch.device(f'cuda:{args.device}')
 
     # define models
     vla_model = LeRobotInferencer(args.vla_ckpt_path,
